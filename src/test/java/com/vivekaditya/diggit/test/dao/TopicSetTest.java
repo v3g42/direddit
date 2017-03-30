@@ -1,6 +1,6 @@
 package com.vivekaditya.diggit.test.dao;
 
-import com.vivekadtiya.diggit.dao.TopicSet;
+import com.vivekadtiya.diggit.models.TopicSet;
 import com.vivekadtiya.diggit.models.Topic;
 import org.junit.Test;
 
@@ -71,9 +71,10 @@ public class TopicSetTest {
         Topic topic2 =  topicSet.add("hello 2");
         topicSet.upvote(topic2.getId());
         topicSet.upvote(topic2.getId());
-
+        System.out.println(topicSet.size());
         Iterator<Topic> iter = topicSet.hotTopics().listIterator();
         Topic first = iter.next();
+        System.out.println(first.getText() + "" + first.getUpvotes());
         boolean sorted = true;
         while(iter.hasNext()) {
             Topic current = iter.next();

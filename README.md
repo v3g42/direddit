@@ -43,9 +43,18 @@ npm test
 ```
 
 ### Data Structure Implementation
+
+* Iteration 1*
 To store the values in order I have used TreeSet. And to make it multithread supported have used
 `Collections.synchronizedSet`.  `AtomicInteger` counters are used to keep track of upvotes and downvotes.
+
+* Iteration 2*
+Instead of storing in a `TreeSet`, an unneccessary operation of sorting every time, a Priority Queue/Max Heap 
+can be maintained as items are upvoted.
 
 Thinking ahead `MapDB` would be an excellent fit as it can memory mapped if the data needs to be serialised.
 
 1: ./frontend/README.md
+2: http://www.michaelpollmeier.com/selecting-top-k-items-from-a-list-efficiently-in-java-groovy
+3: http://stevehanov.ca/blog/index.php?id=122
+

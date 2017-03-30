@@ -6,7 +6,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 /**
  * Data Structure for each topic created
  */
-public class Topic  implements Comparable<Topic> {
+public class Topic  {
     String text;
     Integer id;
     AtomicInteger upvotes;
@@ -30,11 +30,11 @@ public class Topic  implements Comparable<Topic> {
         return id;
     }
 
-    public void incrUpvotes() {
+    void incrUpvotes() {
         this.upvotes.incrementAndGet();
     }
 
-    public void incrDownvotes() {
+    void incrDownvotes() {
         this.downvotes.incrementAndGet();
     }
 
@@ -50,17 +50,15 @@ public class Topic  implements Comparable<Topic> {
         return downvotes.get();
     }
 
-    /**
-     *
-     * @param o Topic to compare against
-     * @return if greater returns 1 or -1 (Cannot return 0 as two topics will be deemed equal)
-     */
+    public String toString() {
+        return this.getText() + ":" + this.getUpvotes() + ":" + this.getDownvotes();
+    }
     @Override
-    public int compareTo(Topic o) {
-        if(this.getUpvotes() > o.getUpvotes()) {
-            return 1;
-        } else {
-            return -1;
+    public boolean equals(Object o){
+        if(o instanceof Topic){
+            Topic c = (Topic)o;
+            return this.id == c.id;
         }
+        return false;
     }
 }

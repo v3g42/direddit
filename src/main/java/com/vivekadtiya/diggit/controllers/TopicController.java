@@ -2,7 +2,7 @@ package com.vivekadtiya.diggit.controllers;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
-import com.vivekadtiya.diggit.dao.TopicSet;
+import com.vivekadtiya.diggit.models.TopicSet;
 import com.vivekadtiya.diggit.models.Topic;
 import com.vivekadtiya.diggit.util.JsonUtil;
 
@@ -32,6 +32,7 @@ public class TopicController {
             Integer id = Integer.valueOf(request.params("id"));
             JsonObject json = new JsonObject();
             json.addProperty("success", topicSet.upvote(id));
+            json.add("topic", gson.toJsonTree(topicSet.get(id)));
             return json;
         }, gson::toJson);
 
@@ -39,6 +40,7 @@ public class TopicController {
             Integer id = Integer.valueOf(request.params("id"));
             JsonObject json = new JsonObject();
             json.addProperty("success", topicSet.downvote(id));
+            json.add("topic", gson.toJsonTree(topicSet.get(id)));
             return json;
         }, gson::toJson);
     }

@@ -2,10 +2,13 @@ package com.vivekadtiya.diggit;
 
 import com.google.gson.JsonObject;
 import com.vivekadtiya.diggit.controllers.TopicController;
-import com.vivekadtiya.diggit.dao.TopicSet;
+import com.vivekadtiya.diggit.models.TopicSet;
 
 import static spark.Spark.*;
 import com.google.gson.Gson;
+import com.vivekadtiya.diggit.models.Topic;
+import com.vivekadtiya.diggit.util.CorsUtil;
+import com.vivekadtiya.diggit.util.TopicComparator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import spark.Request;
@@ -14,6 +17,8 @@ import spark.Request;
  * SparkMain class serving all routes using SparkJava
  */
 public class SparkMain {
+
+
     public static void main(String[] args) {
         Gson gson = new Gson();
 
@@ -38,6 +43,9 @@ public class SparkMain {
     static void setupBasic (Gson gson) {
         Logger logger = LoggerFactory.getLogger(SparkMain.class);
         String env = System.getProperty("environment");
+
+        port(9090);
+
         System.out.println("Environment: " + env);
         // This will let static files reload on refresh without build
         if (env.equals("development")) {
@@ -45,11 +53,12 @@ public class SparkMain {
             String projectDir = System.getProperty("user.dir");
             String staticDir = "/frontend/dist";
             staticFiles.externalLocation(projectDir + staticDir);
+
+            //Allowing cors in development
+            CorsUtil.setup();
         } else {
             staticFiles.location("frontend/dist");
         }
-
-        port(9090);
 
         // Basic logging
         before((request, response) -> {

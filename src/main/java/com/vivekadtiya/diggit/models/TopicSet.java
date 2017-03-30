@@ -1,8 +1,10 @@
-package com.vivekadtiya.diggit.dao;
+package com.vivekadtiya.diggit.models;
 
 import com.vivekadtiya.diggit.models.Topic;
+import com.vivekadtiya.diggit.util.TopicComparator;
 
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
@@ -12,20 +14,19 @@ import java.util.concurrent.atomic.AtomicInteger;
  */
 public class TopicSet {
 
-    TreeSet<Topic> treeSet;
-    HashMap<Integer, Topic> index;
-    Set synchronizedSet;
+    ConcurrentHashMap<Integer, Topic> map;
+    PriorityQueue<Topic> heap;
     AtomicInteger counter;
+    final int K = 20;
 
     /**
-     * Initialises the counter for maintaing ids, treeset and synchronised set
-     * Treeset doesn't support multithreading, hence the usage of synchronised set.
+     * Initialises the counter for maintaing ids and a hashmap to store the topics
+     * PriorityQueue is used to get the top 20 topics
      */
     public TopicSet() {
         counter = new AtomicInteger(0);
-        treeSet = new TreeSet();
-        synchronizedSet = Collections.synchronizedSet(treeSet);
-        index = new HashMap<>();
+        map = new ConcurrentHashMap<>();
+        heap = new PriorityQueue<>(K, new TopicComparator());
     }
 
     /**
@@ -33,30 +34,36 @@ public class TopicSet {
      * @return Size of the set
      */
     public int size() {
-        return synchronizedSet.size();
+        return map.size();
     }
 
     /**
-     * Increments the counter and adds to the treeset
+     * Increments the counter and adds to the hashmap
      * @param text text to be added
      * @return Topic with its associated id stored
      */
     public Topic add(String text) {
         int currentId = counter.incrementAndGet();
         Topic topic = new Topic(text, currentId);
-        index.put(currentId, topic);
-        // This will always return true as two topics are never deemed equal
-        synchronizedSet.add(topic);
+        map.put(currentId, topic);
+        maintainHeap(topic);
         return topic;
     }
 
+    private void maintainHeap(Topic item) {
+        if (heap.size() < K || item.getUpvotes() > heap.peek().getUpvotes()) {
+            if (heap.size() == K)
+                heap.remove(heap.peek());
+            heap.offer(item);
+        }
+    }
     /**
      *
      * @param id Topic ID
      * @return Returns the Topic stored in the hashmap
      */
     public Topic get(int id) {
-        return index.get(id);
+        return map.get(id);
     }
 
     /**
@@ -67,8 +74,9 @@ public class TopicSet {
     public boolean upvote(int id) {
         Topic topic = get(id);
         if(topic == null) return false;
-
         topic.incrUpvotes();
+        heap.remove(topic);
+        maintainHeap(topic);
         return true;
     }
 
@@ -81,8 +89,10 @@ public class TopicSet {
     public boolean downvote(int id) {
         Topic topic = get(id);
         if(topic == null) return false;
-
+        // To keep the sorting have to remove and add
         topic.incrDownvotes();
+        heap.remove(topic);
+        maintainHeap(topic);
         return true;
     }
 
@@ -91,13 +101,13 @@ public class TopicSet {
      * @return The top 20 topics in the order of upvotes
      */
     public List<Topic> hotTopics() {
+
         LinkedList<Topic> list = new LinkedList<>();
-        Iterator<Topic> iter = synchronizedSet.iterator();
-        int c = 0, n = 20;
-        while (c<n  && iter.hasNext()) {
+        Iterator<Topic> iter = heap.iterator();
+        while (iter.hasNext()) {
             list.add(iter.next());
-            c++;
         }
+        list.sort(new TopicComparator());
         return list;
     }
 }
