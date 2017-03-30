@@ -71,10 +71,8 @@ public class TopicSetTest {
         Topic topic2 =  topicSet.add("hello 2");
         topicSet.upvote(topic2.getId());
         topicSet.upvote(topic2.getId());
-        System.out.println(topicSet.size());
         Iterator<Topic> iter = topicSet.hotTopics().listIterator();
         Topic first = iter.next();
-        System.out.println(first.getText() + "" + first.getUpvotes());
         boolean sorted = true;
         while(iter.hasNext()) {
             Topic current = iter.next();

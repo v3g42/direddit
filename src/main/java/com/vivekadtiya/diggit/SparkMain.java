@@ -39,12 +39,19 @@ public class SparkMain {
         sb.append(" " + request.body());
         return sb.toString();
     }
+    static int getHerokuAssignedPort() {
+        ProcessBuilder processBuilder = new ProcessBuilder();
+        if (processBuilder.environment().get("PORT") != null) {
+            return Integer.parseInt(processBuilder.environment().get("PORT"));
+        }
+        return 9090;
+    }
 
     static void setupBasic (Gson gson) {
         Logger logger = LoggerFactory.getLogger(SparkMain.class);
         String env = System.getProperty("environment");
 
-        port(9090);
+        port(getHerokuAssignedPort());
 
         System.out.println("Environment: " + env);
         String projectDir = System.getProperty("user.dir");

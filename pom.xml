@@ -60,6 +60,7 @@
       </properties>
     </profile>
   </profiles>
+
   <build>
     <resources>
       <resource>
@@ -67,6 +68,7 @@
       </resource>
     </resources>
     <plugins>
+      <!-- Maven Assembly -->
       <plugin>
         <artifactId>maven-assembly-plugin</artifactId>
         <executions>
@@ -89,6 +91,7 @@
           </archive>
         </configuration>
       </plugin>
+      <!-- Maven Heroku plugin -->
       <plugin>
         <groupId>com.heroku.sdk</groupId>
         <artifactId>heroku-maven-plugin</artifactId>
@@ -96,14 +99,15 @@
         <configuration>
           <jdkVersion>1.8</jdkVersion>
           <!-- Use your own application name -->
-          <appName>spark-heroku-example</appName>
+          <appName>direddit</appName>
           <processTypes>
             <!-- Tell Heroku how to launch your application -->
             <!-- You might have to remove the ./ in front   -->
-            <web>java -jar .target/my-app-1.0-jar-with-dependencies.jar</web>
+            <web>java -jar target/diggit-1.0-SNAPSHOT-jar-with-dependencies.jar</web>
           </processTypes>
         </configuration>
       </plugin>
+      <!-- Maven Exec -->
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>exec-maven-plugin</artifactId>
@@ -126,6 +130,7 @@
           </systemProperties>
         </configuration>
       </plugin>
+      <!-- Maven Javadoc -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-javadoc-plugin</artifactId>
