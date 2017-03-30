@@ -26,12 +26,33 @@
     </dependency>
 
   </dependencies>
+  <profiles>
+    <profile>
+      <id>dev</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+      <properties>
+        <environment>development</environment>
+      </properties>
+    </profile>
+    <profile>
+      <id>prod</id>
+      <activation>
+        <activeByDefault>false</activeByDefault>
+      </activation>
+      <properties>
+        <environment>production</environment>
+      </properties>
+    </profile>
+  </profiles>
   <build>
     <plugins>
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>exec-maven-plugin</artifactId>
         <version>1.6.0</version>
+
         <executions>
           <execution>
             <goals>
@@ -40,7 +61,13 @@
           </execution>
         </executions>
         <configuration>
-          <mainClass>HelloWorld</mainClass>
+          <mainClass>com.vivekadtiya.diggit.SparkMain</mainClass>
+          <systemProperties>
+            <systemProperty>
+              <key>environment</key>
+              <value>${environment}</value>
+            </systemProperty>
+          </systemProperties>
         </configuration>
       </plugin>
       <plugin>
