@@ -1,7 +1,7 @@
 export class TopicService {
   /** @ngInject */
   constructor($http, $q) {
-    this.API_URL = 'http://localhost:9090';
+    this.API_URL = '';
     this.$http = $http;
     this.$q = $q;
   }
@@ -9,7 +9,7 @@ export class TopicService {
   addTopic(text) {
     const def = this.$q.defer();
     if (!text || text.length > 255) {
-      throw new Error('text should between 0 and 255');
+      def.reject(new Error('text should between 0 and 255'));
     }
     this.$http.post(this.API_URL + '/topics', {text})
       .then(res => def.resolve(res.data));

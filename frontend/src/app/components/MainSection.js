@@ -3,6 +3,7 @@ class MainSectionController {
   constructor(topicService) {
     this.topicService = topicService;
     this.newTopic = null;
+    this.processing = false;
     this.getTopics();
   }
 
@@ -16,7 +17,8 @@ class MainSectionController {
       this.topics.unshift(t);
       this.newTopic = null;
       this.processing = false;
-    }, () => {
+    }, (error) => {
+      window.alert(error.message);
       this.processing = false;
     });
   }

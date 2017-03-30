@@ -65,6 +65,7 @@
     <resources>
       <resource>
         <directory>frontend/dist</directory>
+        <targetPath>public</targetPath>
       </resource>
     </resources>
     <plugins>
@@ -89,22 +90,6 @@
               <mainClass>com.vivekadtiya.diggit.SparkMain</mainClass>
             </manifest>
           </archive>
-        </configuration>
-      </plugin>
-      <!-- Maven Heroku plugin -->
-      <plugin>
-        <groupId>com.heroku.sdk</groupId>
-        <artifactId>heroku-maven-plugin</artifactId>
-        <version>0.4.4</version>
-        <configuration>
-          <jdkVersion>1.8</jdkVersion>
-          <!-- Use your own application name -->
-          <appName>direddit</appName>
-          <processTypes>
-            <!-- Tell Heroku how to launch your application -->
-            <!-- You might have to remove the ./ in front   -->
-            <web>java -jar target/diggit-1.0-SNAPSHOT-jar-with-dependencies.jar</web>
-          </processTypes>
         </configuration>
       </plugin>
       <!-- Maven Exec -->

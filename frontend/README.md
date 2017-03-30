@@ -11,6 +11,14 @@ npm run serve
 npm run serve:dist
 npm test
 ```
+
+### Deployment workaround
+Currently gulp is not copying bootstrap fonts
+```
+cd frontend
+mkdir -p dist/jspm_packages/github/twbs
+cp -r jspm_packages/github/twbs/bootstrap@3.3.6 dist/jspm_packages/github/twbs
+```
 #### Project boilerplate
 
 Using [Fountain](1) to generate a boilerplate for frontend project.

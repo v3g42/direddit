@@ -31,8 +31,12 @@ mvn javadoc:javadoc
 ```
 
 ### Deployment
+
 ```
-mvn heroku:deploy
+heroku plugins:install heroku-cli-deploy
+
+mvn clean package
+heroku deploy:jar target/diggit-1.0-SNAPSHOT-jar-with-dependencies.jar
 ```
 
 ### Frontend

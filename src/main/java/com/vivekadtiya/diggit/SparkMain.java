@@ -57,7 +57,7 @@ public class SparkMain {
         String projectDir = System.getProperty("user.dir");
         String staticDir = "/frontend/dist";
         staticFiles.externalLocation(projectDir + staticDir);
-        staticFiles.externalLocation(projectDir + "/frontend/.tmp");
+        staticFileLocation("public");
 
         // Basic logging
         before((request, response) -> {

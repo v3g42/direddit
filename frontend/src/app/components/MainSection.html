@@ -26,6 +26,7 @@
           <topic
             ng-repeat="topic in $ctrl.topics"
             topic="topic"
+            processing="processing"
           ></topic>
         </ul>
         <p ng-if="!$ctrl.topics.length"> No topics yet!</p>
