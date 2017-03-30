@@ -2,12 +2,19 @@ class TopicController {
   constructor(topicService) {
     this.topicService = topicService;
   }
-  upvote(topicId) {
-    this.topicService.upvote(topicId);
+  copy(topic, res) {
+    topic.upvotes = res.topic.upvotes;
+    topic.downvotes = res.topic.downvotes;
   }
 
-  downvote(topicId) {
-    this.topicService.downvote(topicId);
+  upvote(topic) {
+    this.topicService.upvote(topic.id)
+      .then((res) => this.copy(topic, res));
+  }
+
+  downvote(topic) {
+    this.topicService.downvote(topic.id)
+      .then((res) => this.copy(topic, res));
   }
 }
 

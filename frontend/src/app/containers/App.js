@@ -1,7 +1,6 @@
 class AppController {
   constructor(topicService) {
     this.topicService = topicService;
-    this.topics = this.topicService.getTopics();
   }
 }
 

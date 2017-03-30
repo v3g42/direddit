@@ -1,43 +1,47 @@
 export class TopicService {
-  constructor() {
-    this.topics = [];
+
+  constructor($http, $q) {
+    this.API_URL = 'http://localhost:9090';
+    this.$http = $http;
+    this.$q = $q;
   }
 
   addTopic(text) {
-    if(!text || text.length>255 ) throw new Error("text should between 0 and 255");
-    var topic = {
-      id: this.topics.length,
-      text: text,
-      upvotes: 0,
-      downvotes: 0
-    };
-    this.topics.push(topic);
-    return topic;
+    const def = this.$q.defer();
+    if (!text || text.length > 255) {
+      throw new Error('text should between 0 and 255');
+    }
+    this.$http.post(this.API_URL + '/topics', {text})
+      .then(res => def.resolve(res.data));
+    return def.promise;
   }
 
   getTopic(topicId) {
-    let i = 0;
-    while (i<this.topics.length) {
-      if(this.topics[i].id === topicId) {
-        console.log(this.topics[i]);
-        return this.topics[i];
-      }
-      i++;
-    }
+    const def = this.$q.defer();
+    this.$http.get(this.API_URL + '/topics/' + topicId)
+      .then(res => def.resolve(res.data));
+    return def.promise;
   }
 
   downvote(topicId) {
-    let topic = this.getTopic(topicId);
-    topic.downvotes = topic.downvotes + 1;
+    const def = this.$q.defer();
+    this.$http.post(this.API_URL + '/topics/' + topicId + '/downvote')
+      .then(res => def.resolve(res.data));
+    return def.promise;
   }
 
   upvote(topicId) {
-    let topic = this.getTopic(topicId);
-    topic.upvotes = topic.upvotes + 1;
+    const def = this.$q.defer();
+    this.$http.post(this.API_URL + '/topics/' + topicId + '/upvote')
+      .then(res => def.resolve(res.data));
+    return def.promise;
   }
 
   getTopics() {
-    return this.topics;
+    const def = this.$q.defer();
+    this.$http.get(this.API_URL + '/topics')
+      .then((res) => def.resolve(res.data));
+    return def.promise;
   }
 }
 

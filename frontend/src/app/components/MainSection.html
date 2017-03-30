@@ -12,7 +12,15 @@
     </div>
 
     <div class="panel panel-default">
-      <div class="panel-heading">Hot Topics</div>
+      <div class="panel-heading">
+        <button class="pull-right btn btn-xs" ng-click="$ctrl.getTopics()">
+          <span class="glyphicon glyphicon-screenshot text-success">
+          </span>
+          Reload
+        </button>
+        Hot Topics
+      </div>
+      <p ng-if="$ctrl.processing" class="text-danger text">Procesing.....</p>
       <div class="panel-body">
         <ul class="topics list-group">
           <topic
