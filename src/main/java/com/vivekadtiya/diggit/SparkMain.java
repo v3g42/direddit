@@ -47,18 +47,10 @@ public class SparkMain {
         port(9090);
 
         System.out.println("Environment: " + env);
-        // This will let static files reload on refresh without build
-        if (env.equals("development")) {
-
-            String projectDir = System.getProperty("user.dir");
-            String staticDir = "/frontend/dist";
-            staticFiles.externalLocation(projectDir + staticDir);
-
-            //Allowing cors in development
-            CorsUtil.setup();
-        } else {
-            staticFiles.location("frontend/dist");
-        }
+        String projectDir = System.getProperty("user.dir");
+        String staticDir = "/frontend/dist";
+        staticFiles.externalLocation(projectDir + staticDir);
+        staticFiles.externalLocation(projectDir + "/frontend/.tmp");
 
         // Basic logging
         before((request, response) -> {

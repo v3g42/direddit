@@ -1,5 +1,5 @@
 export class TopicService {
-
+  /** @ngInject */
   constructor($http, $q) {
     this.API_URL = 'http://localhost:9090';
     this.$http = $http;

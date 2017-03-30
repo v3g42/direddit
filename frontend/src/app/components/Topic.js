@@ -1,4 +1,5 @@
 class TopicController {
+  /** @ngInject */
   constructor(topicService) {
     this.topicService = topicService;
   }

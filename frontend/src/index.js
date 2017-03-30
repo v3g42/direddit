@@ -1,5 +1,8 @@
-import angular from 'angular';
+"use strict";
 
+import 'angular';
+
+import $ from 'jquery';
 import 'bootstrap';
 
 import 'bootstrap/dist/css/bootstrap.css!';

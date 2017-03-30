@@ -32,7 +32,7 @@ SystemJS.config({
     'css': 'github:systemjs/plugin-css@0.1.33',
     'events': 'github:jspm/nodelibs-events@0.2.2',
     'fs': 'github:jspm/nodelibs-fs@0.2.0-alpha',
-    'jquery': 'npm:jquery@3.2.1',
+    'jquery': 'npm:jquery@2.2.4',
     'module': 'github:jspm/nodelibs-module@0.2.0-alpha',
     'os': 'github:jspm/nodelibs-os@0.2.0-alpha',
     'path': 'github:jspm/nodelibs-path@0.2.3',

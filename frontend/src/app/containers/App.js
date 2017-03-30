@@ -1,4 +1,5 @@
 class AppController {
+  /** @ngInject */
   constructor(topicService) {
     this.topicService = topicService;
   }
