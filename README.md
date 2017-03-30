@@ -18,6 +18,19 @@ be used to build the frontend.
 - Maven
 - node 4+ (building frontend)
 
+### Running the application
+```
+mvn clean
+mvn package
+mvn exec:java
+```
+
+### JavaDoc
+```
+mvn javadoc:javadoc
+```
+
+
 ### Frontend
 More details about frontend can be found [here](1).
 
@@ -28,5 +41,11 @@ npm run serve
 npm run serve:dist
 npm test
 ```
+
+### Data Structure Implementation
+To store the values in order I have used TreeSet. And to make it multithread supported have used
+`Collections.synchronizedSet`.  `AtomicInteger` counters are used to keep track of upvotes and downvotes.
+
+Thinking ahead `MapDB` would be an excellent fit as it can memory mapped if the data needs to be serialised.
 
 1: ./frontend/README.md
