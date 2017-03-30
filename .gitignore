@@ -1,0 +1,19 @@
+# https://gist.github.com/vivekg342/43735c451a7b285dfb43e0e9fcca0c96
+# .gitignore for Maven IntelliJ projects
+
+# Eclipse
+.classpath
+.project
+.settings/
+
+# Intellij
+.idea/
+*.iml
+*.iws
+
+# Mac
+.DS_Store
+
+# Maven
+log/
+target/
