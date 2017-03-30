@@ -18,7 +18,8 @@ public class Topic  implements Comparable<Topic> {
      * @param id unique id
      */
     public Topic(String text, int id) {
-        if(text.length()>255 || text.length()<0) throw new IllegalArgumentException("text lenhth can be between 1 and 255");
+        if(text == null) throw new IllegalArgumentException("text cannot be null");
+        if(text.length()>255 || text.length()<0) throw new IllegalArgumentException("text length can be between 1 and 255");
         this.id = id;
         this.text = text;
         this.upvotes = new AtomicInteger(0);
