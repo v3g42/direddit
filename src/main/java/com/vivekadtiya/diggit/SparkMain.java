@@ -9,7 +9,7 @@ public class SparkMain {
     public static void main(String[] args) {
 
         String env = System.getProperty("environment");
-        System.out.println("ENvironment: " + env);
+        System.out.println("Environment: " + env);
         // This will let static files reload on refresh without build
         if (env.equals("development")) {
 

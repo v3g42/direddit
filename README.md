@@ -16,15 +16,17 @@ be used to build the frontend.
 
 - Java 8 (IntelliJ/Eclipse)
 - Maven
-- nodejs (building frontend)
+- node 4+ (building frontend)
 
 ### Frontend
-Detailed explanation of setting up frontend project is [here](1)
-Can be served without the backend code for development purposes.
+More details about frontend can be found [here](1).
+
 ```
+cd frontend
 npm run build
 npm run serve
 npm run serve:dist
+npm test
 ```
 
-1: ./docs/frontend_init.md
+1: ./frontend/README.md

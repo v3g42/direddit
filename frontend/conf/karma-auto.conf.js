@@ -25,7 +25,7 @@ module.exports = function (config) {
     jspm: {
       loadFiles: [
         conf.path.src('app/**/*.js'),
-        conf.path.src('**/*.html')
+//        conf.path.src('**/*.html')
       ],
       config: 'jspm.config.js',
       browser: 'jspm.test.js'

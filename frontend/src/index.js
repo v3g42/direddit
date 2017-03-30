@@ -1,6 +1,5 @@
 import angular from 'angular';
 
-import $ from 'jquery';
 import 'bootstrap';
 
 import 'bootstrap/dist/css/bootstrap.css!';
