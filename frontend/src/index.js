@@ -1,23 +1,24 @@
 import angular from 'angular';
-import 'todomvc-app-css/index.css!';
 
-import {TodoService} from './app/todos/todos.js';
+import $ from 'jquery';
+import 'bootstrap';
+
+import 'bootstrap/dist/css/bootstrap.css!';
+
+import {TopicService} from './app/services/topicService.js';
 import {App} from './app/containers/App.js';
 import {Header} from './app/components/Header.js';
 import {MainSection} from './app/components/MainSection.js';
-import {TodoTextInput} from './app/components/TodoTextInput.js';
-import {TodoItem} from './app/components/TodoItem.js';
-import {Footer} from './app/components/Footer.js';
+import {Topic} from './app/components/Topic.js';
+
 import 'angular-ui-router';
 import routesConfig from './routes.js';
 
 angular
   .module('app', ['ui.router'])
   .config(routesConfig)
-  .service('todoService', TodoService)
+  .service('topicService', TopicService)
   .component('app', App)
   .component('headerComponent', Header)
-  .component('footerComponent', Footer)
   .component('mainSection', MainSection)
-  .component('todoTextInput', TodoTextInput)
-  .component('todoItem', TodoItem);
+  .component('topic', Topic);

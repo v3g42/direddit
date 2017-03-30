@@ -24,7 +24,7 @@ SystemJS.config({
     'angular-ui-router': 'npm:angular-ui-router@1.0.0-beta.3',
     'assert': 'github:jspm/nodelibs-assert@0.2.0-alpha',
     'babel': 'npm:babel-core@6.24.0',
-    'bootstrap': 'github:twbs/bootstrap@3.3.7',
+    'bootstrap': 'github:twbs/bootstrap@3.3.6',
     'buffer': 'github:jspm/nodelibs-buffer@0.2.0-alpha',
     'child_process': 'github:jspm/nodelibs-child_process@0.2.0-alpha',
     'constants': 'github:jspm/nodelibs-constants@0.2.0-alpha',
@@ -430,9 +430,9 @@ SystemJS.config({
         'string_decoder-browserify': 'npm:string_decoder@0.10.31'
       }
     },
-    'github:twbs/bootstrap@3.3.7': {
+    'github:twbs/bootstrap@3.3.6': {
       'map': {
-        'jquery': 'npm:jquery@3.2.1'
+        'jquery': 'npm:jquery@2.2.4'
       }
     }
   }

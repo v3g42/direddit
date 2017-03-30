@@ -1,20 +1,11 @@
 class HeaderController {
   /** @ngInject */
-  constructor(todoService) {
-    this.todoService = todoService;
-  }
-
-  handleSave(text) {
-    if (text.length !== 0) {
-      this.todos = this.todoService.addTodo(text, this.todos);
-    }
+  constructor(topicService) {
+    this.topicService = topicService;
   }
 }
 
 export const Header = {
   templateUrl: 'src/app/components/Header.html',
-  controller: HeaderController,
-  bindings: {
-    todos: '='
-  }
+  controller: HeaderController
 };
