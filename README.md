@@ -57,14 +57,14 @@ To store the values in order I have used TreeSet. And to make it multithread sup
 `Collections.synchronizedSet`.  `AtomicInteger` counters are used to keep track of upvotes and downvotes.
 
 ##### Update
-Instead of storing in a `TreeSet`, a Priority Queue/Max Heap can be maintained as items are upvoted.
-As we only need K top elements there is no need to keep the whole list sorted.
+Instead of storing in a `TreeSet`, a `Priority Queue`/`Max Heap` can be maintained as items are upvoted.
+As we only need K top elements there is no need to keep the whole list sorted. I found a bit more explanation 
+along these lines [here][2] and [here][3]
 
 
-#### Links
-- 1: ./frontend/README.md
-- 2: http://www.michaelpollmeier.com/selecting-top-k-items-from-a-list-efficiently-in-java-groovy
-- 3: http://stevehanov.ca/blog/index.php?id=122
+[1]: ./frontend/README.md
+[2]: http://www.michaelpollmeier.com/selecting-top-k-items-from-a-list-efficiently-in-java-groovy
+[3]: http://stevehanov.ca/blog/index.php?id=122
 
 
 
