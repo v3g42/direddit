@@ -1,10 +1,10 @@
 package com.vivekadtiya.diggit.models;
 
-import com.vivekadtiya.diggit.models.Topic;
 import com.vivekadtiya.diggit.util.TopicComparator;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.PriorityBlockingQueue;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
@@ -15,7 +15,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class TopicSet {
 
     ConcurrentHashMap<Integer, Topic> map;
-    PriorityQueue<Topic> heap;
+    PriorityBlockingQueue<Topic> heap;
     AtomicInteger counter;
     final int K = 20;
 
@@ -26,7 +26,7 @@ public class TopicSet {
     public TopicSet() {
         counter = new AtomicInteger(0);
         map = new ConcurrentHashMap<>();
-        heap = new PriorityQueue<>(K, new TopicComparator());
+        heap = new PriorityBlockingQueue<>(K, new TopicComparator());
     }
 
     /**

@@ -6,9 +6,6 @@ import com.vivekadtiya.diggit.models.TopicSet;
 
 import static spark.Spark.*;
 import com.google.gson.Gson;
-import com.vivekadtiya.diggit.models.Topic;
-import com.vivekadtiya.diggit.util.CorsUtil;
-import com.vivekadtiya.diggit.util.TopicComparator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import spark.Request;
