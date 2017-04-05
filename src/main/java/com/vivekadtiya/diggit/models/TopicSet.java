@@ -50,7 +50,7 @@ public class TopicSet {
         return topic;
     }
 
-    private void maintainHeap(Topic item) {
+    private synchronized void maintainHeap(Topic item) {
         if (heap.size() < K || item.getUpvotes() > heap.peek().getUpvotes()) {
             if (heap.size() == K)
                 heap.remove(heap.peek());
@@ -100,14 +100,10 @@ public class TopicSet {
      *
      * @return The top 20 topics in the order of upvotes
      */
-    public List<Topic> hotTopics() {
+    public Topic[] hotTopics() {
 
-        LinkedList<Topic> list = new LinkedList<>();
-        Iterator<Topic> iter = heap.iterator();
-        while (iter.hasNext()) {
-            list.add(iter.next());
-        }
-        list.sort(new TopicComparator());
-        return list;
+        Topic[] topics = heap.toArray(new Topic[heap.size()]);
+        Arrays.sort(topics, new TopicComparator());;
+        return topics;
     }
 }

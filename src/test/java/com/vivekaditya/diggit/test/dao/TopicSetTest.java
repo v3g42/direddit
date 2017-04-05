@@ -7,6 +7,7 @@ import org.junit.Test;
 import java.util.Iterator;
 
 import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Created by vivek on 30/3/17.
@@ -48,7 +49,7 @@ public class TopicSetTest {
         for(int i=0; i < 10; i++) {
             topicSet.add("hello");
         }
-        assertEquals(topicSet.hotTopics().size(), 10);
+        assertEquals(topicSet.hotTopics().length, 10);
     }
 
 
@@ -59,7 +60,7 @@ public class TopicSetTest {
             topicSet.add("hello");
         }
 
-        assertEquals(20, topicSet.hotTopics().size());
+        assertEquals(20, topicSet.hotTopics().length);
     }
 
     @Test
@@ -71,14 +72,9 @@ public class TopicSetTest {
         Topic topic2 =  topicSet.add("hello 2");
         topicSet.upvote(topic2.getId());
         topicSet.upvote(topic2.getId());
-        Iterator<Topic> iter = topicSet.hotTopics().listIterator();
-        Topic first = iter.next();
-        boolean sorted = true;
-        while(iter.hasNext()) {
-            Topic current = iter.next();
-            sorted = sorted & (first.getUpvotes() > current.getUpvotes());
-            first = current;
-        }
-        assertTrue(sorted);
+        Topic[] topics  = topicSet.hotTopics();
+        Topic first = topics[0];
+        Topic current = topics[1];
+        assertTrue(first.getUpvotes() > current.getUpvotes());
     }
 }
